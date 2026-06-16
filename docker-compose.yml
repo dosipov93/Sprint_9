@@ -7,8 +7,11 @@ services:
     volumes:
       - ./config/browser.json:/etc/selenoid/browsers.json:ro
       - /var/run/docker.sock:/var/run/docker.sock
+    environment:
+      - DOCKER_API_VERSION=1.41
+    command: ["-conf", "/etc/selenoid/browsers.json", "-container-network", "selenoid-net"]
     networks:
-      - test-network
+      - selenoid-net
 
   tests:
     build:
@@ -22,8 +25,10 @@ services:
     volumes:
       - ./allure-results:/Sprint_9/allure-results
     networks:
-      - test-network
+      - selenoid-net
+      
 networks:
-  test-network:
+  selenoid-net:
+    name: selenoid-net
     driver: bridge
     
