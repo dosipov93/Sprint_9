@@ -1,5 +1,7 @@
+import os
 import pytest
 from selenium import webdriver
+from selenium.webdriver.remote.file_detector import LocalFileDetector
 from utils.generator import generate_user, generate_recipe_data
 from pages.register_page import RegisterPage
 from pages.login_page import LoginPage
@@ -7,7 +9,13 @@ from pages.login_page import LoginPage
 
 @pytest.fixture
 def driver():
-    driver = webdriver.Chrome()
+    selenoid_uri = os.environ.get("SELENOID_URI", "http://127.0.0.1:4444/wd/hub")
+    options = webdriver.ChromeOptions()
+    driver = webdriver.Remote(
+        command_executor=selenoid_uri,
+        options=options
+    )
+    driver.file_detector = LocalFileDetector()
     driver.maximize_window()
     yield driver
     driver.quit()

@@ -1,0 +1,29 @@
+services:
+  selenoid:
+    image: aerokube/selenoid:latest-release
+    container_name: selenoid
+    ports:
+      - "4444:4444"
+    volumes:
+      - ./config/browser.json:/etc/selenoid/browsers.json:ro
+      - /var/run/docker.sock:/var/run/docker.sock
+    networks:
+      - test-network
+
+  tests:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: sprint9_tests
+    depends_on:
+      - selenoid
+    environment:
+      - SELENOID_URI=http://selenoid:4444/wd/hub
+    volumes:
+      - ./allure-results:/Sprint_9/allure-results
+    networks:
+      - test-network
+networks:
+  test-network:
+    driver: bridge
+    
