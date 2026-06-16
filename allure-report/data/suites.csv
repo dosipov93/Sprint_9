@@ -1,0 +1,4 @@
+"DESCRIPTION","DURATION IN MS","NAME","PARENT SUITE","START TIME","STATUS","STOP TIME","SUB SUITE","SUITE","TEST CLASS","TEST METHOD"
+"","2541","test_create_recipe","tests","2026-06-16","passed","2026-06-16","TestRecipe","test_recipe","",""
+"","849","Тест: Авторизация пользователя","tests","2026-06-16","passed","2026-06-16","TestLogin","test_login","",""
+"","1471","Тест: Регистрация нового пользователя","tests","2026-06-16","passed","2026-06-16","TestRegister","test_register","",""
