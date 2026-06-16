@@ -2,11 +2,9 @@ name: Sprint 9 Tests CI
 
 on:
   push:
-    branches:
-      - master
-    pull_request:
-    branches:
-      - master
+    branches: [master]
+  pull_request:
+    branches: [master]
 
 jobs:
   run-selenoid-tests:
