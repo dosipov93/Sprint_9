@@ -4,7 +4,7 @@ from faker import Faker
 fake_en = Faker('en_US')
 fake_ru = Faker('ru_RU')
 
-def generate_user():
+def generate_user_data():
     return {
         'first_name': fake_ru.first_name(),
         'last_name': fake_ru.last_name(),

@@ -2,7 +2,7 @@ import os
 import pytest
 from selenium import webdriver
 from selenium.webdriver.remote.file_detector import LocalFileDetector
-from utils.generator import generate_user, generate_recipe_data
+from utils.generator import generate_user_data
 from pages.register_page import RegisterPage
 from pages.login_page import LoginPage
 
@@ -21,15 +21,8 @@ def driver():
     driver.quit()
 
 @pytest.fixture
-def recipe_data():
-    return generate_recipe_data()
-
-@pytest.fixture
-def user_data():
-    return generate_user()
-
-@pytest.fixture
-def registered_user(driver, user_data):
+def registered_user(driver):
+    user_data = generate_user_data()
     register_page = RegisterPage(driver)
     register_page.register(
         user_data['first_name'],

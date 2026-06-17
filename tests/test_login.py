@@ -5,7 +5,7 @@ from config.urls import Urls
 
 
 class TestLogin:
-    @allure.title('Тест: Авторизация пользователя')
+    @allure.title('Авторизация зарегистрированного пользователя и проверка отображения кнопки "Выход"')
     def test_login_user(self, driver, registered_user):
         login_page = LoginPage(driver)
         login_page.open_login_page()

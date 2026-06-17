@@ -1,12 +1,14 @@
 import allure
 import pytest
+from utils.generator import generate_user_data
 from pages.register_page import RegisterPage
 from pages.login_page import LoginPage
 from config.urls import Urls
 
 class TestRegister:
-    @allure.title('Тест: Регистрация нового пользователя')
-    def test_register_new_user(self, driver, user_data):
+    @allure.title('Регистрация нового пользователя и проверка перехода на страницу авторизации')
+    def test_register_new_user(self, driver):
+        user_data = generate_user_data()
         register_page = RegisterPage(driver)
         register_page.open_register_page()
         register_page.fill_first_name(user_data['first_name'])

@@ -1,11 +1,14 @@
 import allure
 import pytest
+from utils.generator import generate_recipe_data
 from pages.recipe_page import RecipePage
 from utils.file_utils import get_asset_path
 
 
 class TestRecipe:
-    def test_create_recipe(self, driver, login_user, recipe_data):
+    @allure.title('Создание рецепта и проверка отображения карточки с корректным названием')
+    def test_create_recipe(self, driver, login_user):
+        recipe_data = generate_recipe_data()
         recipe_page = RecipePage(driver)
         recipe_page.open_recipe_page()
         recipe_page.fill_title(recipe_data['title'])
