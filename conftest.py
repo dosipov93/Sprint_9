@@ -31,6 +31,8 @@ def registered_user(driver):
         user_data['email'],
         user_data['password']
     )
+    page = LoginPage(driver)
+    page.get_login_form()
     return user_data
 
 @pytest.fixture

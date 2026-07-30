@@ -2,17 +2,21 @@ name: Sprint 9 Tests CI
 
 on:
   push:
-    branches: [main, develop]
+    branches: [main]
 
 jobs:
   run-selenoid-tests:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout repository code  
+      - name: Checkout repository code
         uses: actions/checkout@v4
 
       - name: Pull Selenoid Chrome image
         run: docker pull selenoid/chrome:128.0
-        
+
       - name: Run tests with docker-compose
         run: docker compose up --build --exit-code-from tests
+
+      - name: Cleanup
+        if: always()
+        run: docker compose down
