@@ -1,7 +1,9 @@
 name: Sprint 9 Tests CI
 
 on:
-  push:
+  pull_request:
+    branches: [main]
+  push:               
     branches: [main]
 
 jobs:
